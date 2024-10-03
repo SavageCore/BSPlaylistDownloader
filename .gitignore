@@ -1,0 +1,6 @@
+songs/
+dist/
+build/
+*.spec
+__pycache__
+config.json

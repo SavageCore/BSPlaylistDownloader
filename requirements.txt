@@ -1,0 +1,6 @@
+black===24.8.0
+pyinstaller==6.10.0
+requests==2.32.3
+semver===3.0.2
+pillow==10.4.0
+psutil==6.0.0
