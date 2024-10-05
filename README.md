@@ -19,7 +19,9 @@ Example url: `https://beatsaver.com/playlists/674833`
 
 From the command line there are three ways to download a playlist:
 
-1. By playlist ID, playlist URL or bplist file:
+1. By playlist ID
+2. Playlist URL
+3. bplist file
 
 Note you'll want to enclose the file in quotes if it contains spaces. `BSPlaylistDownloader-win64.exe "C:\Users\Username\Downloads\BeatSaver - Bookmarks.bplist"`
 
