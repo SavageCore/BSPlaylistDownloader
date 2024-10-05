@@ -43,6 +43,20 @@ def download_songs(songs):
             print(f"Failed to download {url}: {response.status_code}")
 
 
+def run_adb_command(command, retries=3, timeout=10):
+    for _ in range(retries):
+        process = subprocess.Popen(
+            command, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
+        try:
+            stdout, stderr = process.communicate(timeout=timeout)
+            return stdout.decode(), stderr.decode()
+        except subprocess.TimeoutExpired:
+            process.kill()
+            time.sleep(1)
+    return None, None
+
+
 if not read_config():
     create_config()
 
@@ -57,19 +71,13 @@ headers = {
 
 legacy_playlist = False
 
-
-def run_adb_command(command, retries=3, timeout=10):
-    for _ in range(retries):
-        process = subprocess.Popen(
-            command, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-        )
-        try:
-            stdout, stderr = process.communicate(timeout=timeout)
-            return stdout.decode(), stderr.decode()
-        except subprocess.TimeoutExpired:
-            process.kill()
-            time.sleep(1)
-    return None, None
+# Check if adb is installed
+stdout, stderr = run_adb_command(["adb", "--version"])
+if not stdout:
+    print_colored("ADB not found. Please install ADB and try again.", RED)
+    print_colored_bold("Press Enter to exit...", WHITE)
+    input("")
+    sys.exit(1)
 
 
 try:
