@@ -20,7 +20,7 @@ from helpers.print_colored import (
 )
 
 REPO = "SavageCore/BSPlaylistDownloader"
-CURRENT_VERSION = "0.1.0"
+CURRENT_VERSION = "0.1.1"
 APP_PATH = os.path.dirname(os.path.abspath(sys.executable))
 
 print("\033[H\033[J")
